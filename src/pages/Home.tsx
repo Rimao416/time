@@ -1,114 +1,98 @@
-// import React from 'react'
-import { FaPhoneAlt } from "react-icons/fa";
-import { FaUniversity } from "react-icons/fa";
-import { IoMailSharp } from "react-icons/io5";
-import { TiSocialFacebook } from "react-icons/ti";
 import Time from "../assets/logo.gif";
-import { FaDribbble } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
-import { FaLinkedinIn } from "react-icons/fa6";
-import { gridData } from "../constants/gridData";
-import { Grid } from "../components/Grid";
+import { Swiper, SwiperSlide } from "swiper/react";
+import MyU from "../assets/u.png";
+import MyT from "../assets/t.png";
+import {motion} from "framer-motion"
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+
+// import "./styles.css";
+
+// import required modules
+import { Autoplay } from "swiper/modules";
 import { useState } from "react";
+import { headerData } from "../constants/headerData";
+import Header from "../components/Header";
 // import { motion } from "framer-motion";
 function Home() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null); // Garde la trace de l'élément survolé
+  useState<number | null>(null); // Garde la trace de l'élément survolé
   const menuItems = [
     { label: "Accueil", link: "#" },
-    { label: "Etudes", link: "#" },
-    { label: "Stages", link: "#" },
+    { label: "Formations", link: "#" },
     { label: "Admissions", link: "#" },
     { label: "Actualités", link: "#" },
-    { label: "Formations", link: "#" },
+    { label: "International", link: "#" },
+    { label: "Vie estudiante", link: "#" },
   ];
-  const handleMouseEnter = (index: number) => {
-    console.log(index)
-    // setHoveredIndex(index); // Change l'élément survolé
-  };
 
-  const handleMouseLeave = () => {
-    setHoveredIndex(null); // Réinitialise l'état quand la souris quitte l'élément
-  };
   return (
     <div className="App">
-      <section className="header">
-        <div className="header__hero">
-          <p>
-            {" "}
-            <span className="header__hero--icons">
-              <FaPhoneAlt />
-            </span>
-            <span>(+216) 71 95 11 94</span>
-          </p>
-          <p>
-            {" "}
-            <span className="header__hero--icons">
-              <IoMailSharp />
-            </span>{" "}
-            <span>contact</span>
-          </p>
-          <p>
-            {" "}
-            <span className="header__hero--icons">
-              <FaUniversity />
-            </span>{" "}
-            <span>Admissions</span>
-          </p>
-          <ul className="header__hero--social">
-            <li>
-              <a href="#">
-                <TiSocialFacebook />
+      <section className="navigation">
+        <img src={Time} alt={Time} className="navigation__logo" />
+        <ul className="navigation__menu">
+          {menuItems.map((item, index) => (
+            <li key={index}>
+              <a href={item.link} className="navigation__link">
+                {item.label}
               </a>
             </li>
-
-            <li>
-              {" "}
-              <a href="#">
-                <FaTwitter />
-              </a>{" "}
-            </li>
-            <li>
-              {" "}
-              <a href="#">
-                <FaLinkedinIn />
-              </a>{" "}
-            </li>
-            <li>
-              {" "}
-              <a href="#">
-                <FaDribbble />
-              </a>{" "}
-            </li>
-          </ul>
-        </div>
-        <div className="header__nav">
-          <img src={Time} alt={Time} />
-          <ul className="header__nav--list">
-            {menuItems.map((item) => (
-              <li key={item.label}>
-                <a href={item.link}>{item.label}</a>
-              </li>
-            ))}
-            <button></button>
-          </ul>
-        </div>
+          ))}
+        </ul>
+        <button className="navigation__button">Espace Privé</button>
       </section>
-      <section className="container">
-        <div className="container__map">
-          <div className="text-overlay">Membre du 1er réseau panafricain</div>
+      <section className="header">
+        <Swiper
+          // direction={"vertical"}
+          pagination={{
+            clickable: true,
+          }}
+          loop={true}
+          autoplay={{
+            delay: 3000, // Délai en ms
+            disableOnInteraction: false, // Continue après interaction
+            // disable when mouse is on
+            pauseOnMouseEnter: true,
+          }}
+          speed={1000}
+          modules={[Autoplay]}
+          className="header"
+        >
+          {headerData.map((item, index) => (
+            <SwiperSlide key={index}>
+              <Header
+                title={item.title}
+                description={item.description}
+                image={item.image}
+                link={item.link}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </section>
+      <section className="presentation">
+        <div className="presentation__image">
+          <motion.img animate={{y: [0,100]}} transition={{duration:1,repeat:Infinity,repeatType:"reverse",type:"tween",repeatDelay:1}}  src={MyU} alt="MyU" />
+          <motion.img animate={{y: [0,-100]}} transition={{duration:1,repeat:Infinity,repeatType:"reverse",type:"tween",repeatDelay:1}}   src={MyT} alt="MyT" />
         </div>
-        {
-          gridData.map((item, index) => (
-            <Grid
-              key={index}
-              title={item.title}
-              image={item.image}
-              isHovered={hoveredIndex === index}
-              onHover={() => handleMouseEnter(index)}
-              onLeave={handleMouseLeave}
-            />
-          ))
-        }
+        <div className="presentation__body">
+          <p className="presentation__body--title">
+            L'employabilité d'abord
+          </p>
+          <h1 className="presentation__body--text">TIME Higher School vise principalement l'employabilité, en s'assurant que ses étudiants soient opérationnels à la fin de leurs études et en leur permettant d'évoluer dans les nouveaux métiers.</h1>
+          <div className="presentation__body--main">
+            <div className="presentation__wrapper">
+              <p>TIME Higher School, a pour principal objectif l’employabilité, qui consiste pour elle à tout mettre en œuvre pour permettre à l’étudiant d’être immédiatement opérationnel au terme de ses études tout en développant en lui la capacité d’évoluer dans les nouveaux métiers qu’il aura à exercer.</p>
+              <button>En Savoir plus</button>
+            </div>
+            <p>
+            Une formation diplômante (agréée par l'État) et certifiante qui permet une double reconnaissance réglementaire et professionnelle et qui aboutit à un diplôme reconnu par le M.E.S, soutenu par une maîtrise des normes professionnelles internationales.
+
+La formation continue qui porte sur quelques modules et/ou de sous modules appartenant au contenu des programmes d'enseignement permet aux candidats concernés de s'inscrire pour passer les examens.
+            </p>
+          </div>
+        </div>
       </section>
     </div>
   );
