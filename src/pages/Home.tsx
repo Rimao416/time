@@ -22,7 +22,8 @@ function Home() {
     { label: "Formations", link: "#" },
   ];
   const handleMouseEnter = (index: number) => {
-    setHoveredIndex(index); // Change l'élément survolé
+    console.log(index)
+    // setHoveredIndex(index); // Change l'élément survolé
   };
 
   const handleMouseLeave = () => {
@@ -92,31 +93,23 @@ function Home() {
           </ul>
         </div>
       </section>
-      <div className="layout">
-        {/* La partie gauche qui ne fait pas partie du grid */}
-        <div className="layout__left">
-          <div className="layout__left-overlay">
-            Membre du 1er réseau panafricain d'enseignement privé
-          </div>
+      <section className="container">
+        <div className="container__map">
+          <div className="text-overlay">Membre du 1er réseau panafricain</div>
         </div>
-
-        {/* La partie droite contenant le grid */}
-        <section className="layout__right">
-          <div className="grid">
-            {gridData.map((item, index) => (
-             <Grid
-             key={item.title}
-             title={item.title}
-             image={item.image}
-             className={hoveredIndex === index ? "grid__item--large" : ""}
-             isLarge={hoveredIndex === null && index === 0} // Le premier élément est large par défaut
-             onHover={() => handleMouseEnter(index)} // Passe l'index lors du survol
-             onLeave={handleMouseLeave}
-           />
-            ))}
-          </div>
-        </section>
-      </div>
+        {
+          gridData.map((item, index) => (
+            <Grid
+              key={index}
+              title={item.title}
+              image={item.image}
+              isHovered={hoveredIndex === index}
+              onHover={() => handleMouseEnter(index)}
+              onLeave={handleMouseLeave}
+            />
+          ))
+        }
+      </section>
     </div>
   );
 }

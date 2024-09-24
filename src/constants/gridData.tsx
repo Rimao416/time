@@ -1,7 +1,7 @@
 export const gridData = [
   {
     id: 1,
-    title: "Executive Education",
+    title: "Executive",
     image: "https://via.placeholder.com/300",
   },
   {
@@ -28,20 +28,5 @@ export const gridData = [
     id: 6,
     title: "Health",
     image: "https://via.placeholder.com/300",
-  },
-  {
-    id: 7,
-    title: "Environment",
-    image: "https://via.placeholder.com/300",
-  },
-  {
-    id: 8,
-    title: "Education",
-    image: "https://via.placeholder.com/300",
-  },
-  {
-    id: 9,
-    title: "Science",
-    image: "https://via.placeholder.com/300",
-  },
+  }
 ];

@@ -13,16 +13,17 @@ export interface GridProps {
 export const Grid = ({ title, image, className, isHovered, isLarge, onHover, onLeave }: GridProps) => {
   return (
     <motion.div
-      className={`grid__item ${className} ${isLarge ? "grid__item--large" : ""}`}
+      className={`item ${className} ${isLarge ? "grid__item--large" : ""}`}
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
+      
+      transition={{ duration: 0.3, ease: "easeInOut",type:"spring" }}
       layout
-      transition={{ duration: 0.3, ease: "easeInOut" }}
       initial={{ opacity: 0.8 }}
-      animate={{ opacity: 1 }}
+      animate={{ opacity: 1, scale: isHovered ? 1.2 : 1 }}
     >
-      <img className="grid__item-image" src={image} alt={title} />
-      <div className="grid__item-overlay">{title.toUpperCase()}</div>
+      <img src={image} alt={title} />
+      <div className="text-overlay">{title.toUpperCase()}</div>
     </motion.div>
   );
 };
