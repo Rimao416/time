@@ -255,7 +255,7 @@ function Home() {
       <footer className="footer">
         <div className="footer__container">
           <div className="footer__column">
-            <h4 className="footer__heading">ULT</h4>
+            <h4 className="footer__heading">TIME</h4>
             <ul className="footer__list">
               <li className="footer__item">L'université</li>
               <li className="footer__item">Partenaires</li>
@@ -307,7 +307,7 @@ function Home() {
           </div>
         </div>
         <div className="footer__bottom">
-          <p>©2020 Université Libre de Tunis</p>
+          <p>©TIME</p>
           <ul className="footer__bottom-list">
             <li className="footer__bottom-item">FAQ</li>
             <li className="footer__bottom-item">Accès Privés</li>
