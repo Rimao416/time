@@ -1,19 +1,49 @@
 import "swiper/css";
 import "swiper/css/pagination";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Logo from "../assets/logo.jpg";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { LuMapPin } from "react-icons/lu";
 import { motion, AnimatePresence } from "framer-motion";
 
-// import "./styles.css";
+import About from "../assets/about.png";
+
+import Temoignage_1 from "../assets/Temoignage_1.jpg";
+import Temoignage_2 from "../assets/Temoignage_2.jpg";
+import Temoignage_3 from "../assets/Temoignage_3.jpg";
+import Temoignage_4 from "../assets/Temoignage_4.jpg";
+import Temoignage_5 from "../assets/Temoignage_5.jpg";
+import Temoignage_6 from "../assets/Temoignage_6.jpg";
+
+import Temoignage_10 from "../assets/Temoignage_10.jpg";
+
+import Temoignage_12 from "../assets/Temoignage_12.jpg";
+import Temoignage_13 from "../assets/Temoignage_13.jpg";
 
 // import required modules
 import { Autoplay } from "swiper/modules";
 import { calendarData, headerData, Title } from "../constants/headerData";
+import { NewsData } from "../components/News";
+import { Link } from "react-router-dom";
 function Home() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Détection du scroll pour changer l'état
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   useState<number | null>(null); // Garde la trace de l'élément survolé
   const truncateTitle = (title: string, index: number = 40) => {
     if (title.length > index) {
@@ -30,11 +60,38 @@ function Home() {
     { label: "Contact", link: "#" },
     // { label: "Vie estudiante", link: "#" },
   ];
- 
+  const imageGallery = [
+    Temoignage_1,
+    Temoignage_2,
+    Temoignage_3,
+    Temoignage_4,
+    Temoignage_5,
+    Temoignage_6,
+    Temoignage_10,
+    Temoignage_12,
+    Temoignage_13,
+  ];
+  // const SlideAbout = [About_1, About_2, About_3, About_4];
+  const EventTop = () => {
+    return (
+      <div className="events__features">
+        <div className="events__features--date">
+          <p>22</p>
+          <p>Sept</p>
+        </div>
+        <div className="events__features--title">
+          <h5>Lorem ipsum dolor sit amet</h5>
+          <p>Lorem ipsum dolorr sit amet</p>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="App">
-      <section className="navigation">
+      <section
+        className={`navigation ${isScrolled ? "navigation--scrolled" : ""}`}
+      >
         <img src={Logo} alt={Logo} className="navigation__logo" />
         <ul className="navigation__menu">
           {menuItems.map((item, index) => (
@@ -57,8 +114,19 @@ function Home() {
           >
             À L'université Time, &nbsp;
             <AnimatePresence>
-              <motion.span initial={{ opacity: .5 }} animate={{ opacity: 1 }} transition={{ duration: .8, ease: "easeIn", type: "spring",delay:.5}
-            } className="header__slide">{Title[activeIndex].title}</motion.span>
+              <motion.span
+                initial={{ opacity: 0.5 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  duration: 0.8,
+                  ease: "easeIn",
+                  type: "spring",
+                  delay: 0.5,
+                }}
+                className="header__slide"
+              >
+                {Title[activeIndex].title}
+              </motion.span>
             </AnimatePresence>
           </h1>
           <div className="header__bottom">
@@ -112,6 +180,229 @@ function Home() {
           ))}
         </Swiper>
       </section>
+      <section className="about">
+        <img src={About} alt={About} className="about__wrapper" />
+        {/* <div className="about__wrapper">
+          <div className="about__wrapper--image">
+            <img src={About} alt={About} />
+            <img src={Mu} alt={Mu} />
+          </div>
+        </div> */}
+        <div className="about__wrapper">
+          <p className="about__wrapper--about">About Us</p>
+          <h1 className="about__wrapper--title">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis
+          </h1>
+          <p className="about__wrapper--lorem">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt,
+            vel quibusdam eligendi saepe sapiente facere inventore voluptatum
+            necessitatibus. Nemo officia, error nihil delectus vel iure
+            voluptatum iste. Dolorum, optio nam!
+          </p>
+          <div className="about__wrapper--bottom">
+            <button>Voir Plus</button>
+          </div>
+        </div>
+      </section>
+      <section className="news">
+        <div className="news__header">
+          <h1 className="news__header--title">
+            Les Dernières <span>Actualités</span>
+          </h1>
+          <button className="news__header--button">Voir Tout</button>
+        </div>
+        <div className="news__grid">
+          {NewsData.map((item, index) => (
+            <div key={index} className="news__grid--item">
+              <img src={item.image} alt={item.title} />
+              <div className="news__grid--item--text">
+                <p>Actualités</p>
+                <h1>{item.title}</h1>
+                <p></p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+      <section className="events">
+        <div className="events__header">
+          <div className="events__header--wrapper">
+            <h1 className="events__header--title">
+              Événements <span>Universitaires</span>{" "}
+            </h1>
+          </div>
+          <div className="events__header--date">
+            <p>Sept</p>
+            <p>Oct</p>
+            <p>Nov</p>
+          </div>
+        </div>
+        <div className="events__body">
+          <div className="events__body--main">
+            {NewsData.slice(0, 2).map((item, index) => (
+              <div key={index} className="events__body--item">
+                <img src={item.image} alt={item.title} />
+                <div className="events__body--item--text">
+                  <div className="events__container">
+                    <EventTop />
+                    <p>
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                      Voluptatem sunt sint amet natus perferendis, minima
+                      voluptatum rem dolorem ea numquam magni tempora illum,
+                      explicabo, voluptate corporis quod ad eius accusantium.
+                    </p>
+                    <Link to="#">Voir Plus</Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="events__body--second">
+            {NewsData.map(() => (
+              <div className="events__body--others" key={Math.random()}>
+                <EventTop />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="gallery">
+        <div className="gallery__header">
+          <h1>Gallerie</h1>
+          <button>Voir Tout</button>
+        </div>
+        <Swiper
+          slidesPerView={4}
+          spaceBetween={10}
+          loop={true}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          autoplay={{
+            delay: 3000, // Délai en ms
+          }}
+          speed={1000}
+          modules={[Autoplay]}
+          className="gallery__grid"
+        >
+          {imageGallery.map((item, index) => (
+            <SwiperSlide key={index}>
+              <img
+                src={item}
+                alt={`Gallery image ${index + 1}`}
+                className="gallery__image"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </section>
+      <section className="map">
+        <div className="map__word">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12776.316702999457!2d10.1840488!3d36.8166226!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd346280d8b2b5%3A0x1d2f572c8f2fa17c!2sTIME%20Universit%C3%A9!5e0!3m2!1sfr!2stn!4v1727381487125!5m2!1sfr!2stn"
+            width="100%" // Largeur 100% de l'écran
+            height="450px" // Hauteur fixe
+            style={{ border: "0" }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+        <div className="map__text">
+          <h1>Contacts</h1>
+          <p>
+            {" "}
+            <span>
+              <LuMapPin />
+            </span>
+            <p>Veuillez indiquer la position exacte</p>{" "}
+          </p>
+          <p>
+            {" "}
+            <span>
+              <LuMapPin />
+            </span>
+            <p>+21612345678</p>{" "}
+          </p>
+          <p>
+            {" "}
+            <span>
+              <LuMapPin />
+            </span>
+            <p>nomdeluniversite@gmail.com</p>{" "}
+          </p>
+          <p>
+            {" "}
+            <span>
+              <LuMapPin />
+            </span>
+            <p>nomdeluniversite.com</p>{" "}
+          </p>
+        </div>
+      </section>
+      <footer className="footer">
+        <div className="footer__container">
+          <div className="footer__column">
+            <h4 className="footer__heading">TIME</h4>
+            <ul className="footer__list">
+              <li className="footer__item">L'université</li>
+              <li className="footer__item">Partenaires</li>
+              <li className="footer__item">Actualités</li>
+              <li className="footer__item">Presse et médias</li>
+              <li className="footer__item">Contact</li>
+            </ul>
+          </div>
+
+          <div className="footer__column">
+            <h4 className="footer__heading">Pourquoi Time ?</h4>
+            <ul className="footer__list">
+              <li className="footer__item">Corps professoral</li>
+              <li className="footer__item">Campus</li>
+              <li className="footer__item">Assurance qualité</li>
+            </ul>
+          </div>
+
+          <div className="footer__column">
+            <h4 className="footer__heading">Formations</h4>
+            <ul className="footer__list">
+              <li className="footer__item">Polytechnique</li>
+              <li className="footer__item">Business School</li>
+              <li className="footer__item">Ecole d'Architecture</li>
+              <li className="footer__item">Ecole de Droit</li>
+              <li className="footer__item">Certifications & Formations</li>
+            </ul>
+          </div>
+
+          <div className="footer__column">
+            <h4 className="footer__heading">Admission</h4>
+            <ul className="footer__list">
+              <li className="footer__item">Pré-inscription en ligne</li>
+              <li className="footer__item">Conditions d'admission</li>
+              <li className="footer__item">Conditions financières</li>
+            </ul>
+          </div>
+
+          <div className="footer__column">
+            <h4 className="footer__heading">Nous Contacter</h4>
+            <ul className="footer__list">
+              <li className="footer__item">Ici Adresse</li>
+              <li className="footer__item">1002 Tunis</li>
+              <li className="footer__item">Tél.: (+216) ****</li>
+              <li className="footer__item">(+216) ******</li>
+              <li className="footer__item">contact@time.com</li>
+              <li className="footer__item">Comment s'y rendre ?</li>
+            </ul>
+          </div>
+        </div>
+        <div className="footer__bottom">
+          <p>©TIME</p>
+          <ul className="footer__bottom-list">
+            <li className="footer__bottom-item">FAQ</li>
+            <li className="footer__bottom-item">Accès Privés</li>
+          </ul>
+        </div>
+      </footer>
     </div>
   );
 }
