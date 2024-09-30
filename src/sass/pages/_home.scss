@@ -1,59 +1,165 @@
-.navigation{
+.navigation {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 80px;
-    // padding: 1.5rem 1.5rem;
-    top: 0;
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 10;
-    &__menu{
-        display: flex;
-        align-items: center;
+    background-color: transparent;
+  
+    &__menu {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 30px;
+  
+      .navigation__item {
+        // color: red;
+        // position: relative;  
+  
+        &:hover .navigation__dropdown {
+          display: block;
+        }
+      }
+
+      color: white;
+
+    }
+  
+    &__link {
+      text-decoration: none;
+      color: white;
+      font-size: 14px;
+    //   font-weight: 600;
+      transition: color 0.3s ease;
+  
+      &:hover {
+        color: $second-color;
+      }
+    }
+    &__dropdown {
+        position: absolute;
+        background: white;
+        // width: 180px;
+        // line-height: 45px;
+        // top: 85px;
+        opacity: 0;
+        visibility: hidden;
+     
+  
+        
+  
+        padding: 10px 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
         list-style: none;
-        gap: 30px;
-        a{
+        width: fit-content;
+      
+  
+        
+        &-link {
+          padding: 10px 20px;
+          font-size: 14px;
+          text-decoration: none;
+          display: block;
+  
+    
+          // &:hover {
+          //   background-color: $second-color;
+          //   color: white !important;
+          // }
+        }
+      }
+      &__mega{
+          position: absolute;
+        //   top: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 80%;
+
+          display: flex;
+
+          background-color: white;
+          z-index: 1000;
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s ease;
+          
+        //   padding: 0 30px;
+          // width: 100%;
+          &--content{
+            padding-top: 10px;
+            // padding-bottom: 5px;
+            padding-left: 30px;
+            padding-right: 30px;
+
+
+            font-size: 14px;
+              display: flex;
+              flex-direction: row;
+                         
+              gap: 20px;
+              width: 100%;
+            
+            }
+      }
+      h3{
+        font-size: 14px;
+        margin-bottom: 15px;
+        color: $main-color;
+      }
+      li{
+        list-style: none;
+        
+        margin-bottom: 20px;
+
+        a.navigation__mega--link{
             text-decoration: none;
-            color:white;
+            color: black;
+            transition: all 0.3s ease;
             &:hover{
                 color: $second-color;
             }
         }
-    
-    }
-    &__button{
-        outline: none;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        background: $main-color;
-        color: white;
-        font-size: 14px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        &:hover{
-            transform: translateY(-5px);
-        }
-    }
-    &__logo{
-        width: 100px;
-        height: 100px;
-        object-fit: contain;
-    }
 
-
-    &--scrolled {
-        background-color: white; // Couleur de fond quand on scroll
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: background-color 0.5s ease, box-shadow 0.5s ease; // Transition pour le fond et l'ombre après scroll
-        .navigation__link {
-          color: $main-color; // Couleur des liens après scroll
-        }
       }
-}
+   &__menu li:hover &__dropdown,
+   &__menu li:hover &__mega{
+       opacity: 1;
+       transition: all 0.3s ease;
+       visibility: visible;
+   }
+    &__logo {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+    }
+//   &__dropdown {
+//     display: none;
+//   }
+ 
+    // &__mega{
+    //     position: absolute;
+    //     top: 100%;
+    //     left: 0;
+    //     display: flex;
+    //     background-color: red;
+    //     // width: 100%;
+    // }
+  
+    &--scrolled {
+      background-color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.5s ease, box-shadow 0.5s ease;
+  
+      .navigation__link {
+        color: $main-color;
+      }
+    }
+  }
 .header{
 
     width: 100%;
@@ -402,8 +508,10 @@ position: relative;
         &--main{
             position:relative;
             display: flex;
+            cursor: pointer;
             gap: 10px;
             flex-basis: 70%;
+        
         }
         &--item{
             position: relative;
@@ -413,14 +521,21 @@ position: relative;
 
             flex-direction: column;
             justify-content: space-between;
-            // align-items: center;
+            transition: all .3s ease;
+            &:hover{
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                transform: translateY(-10px);
+            }
             img{
                 position: relative;
                 flex-basis: 50%;
                 width: 100%;
+                height: 100%;
                 overflow: hidden;
                 object-fit: cover;
-            }
+                       
+              }
+      
             &--text{
                 background-color: white;
                 box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -459,6 +574,14 @@ position: relative;
         // justify-content: space-between;
         // align-items: center;
         gap: 20px;
+        padding: 10px;
+        cursor: pointer;
+        width: fit-content;
+        transition: all .3s ease;
+        &:hover{
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            transform: translateY(-10px);
+        }
         &--top{
             display: flex;
             align-items: center;
@@ -609,7 +732,8 @@ position: relative;
 
   }
   .footer {
-    background-color: #2d2d2d;
+    // background-color: #2d2d2d;
+    background-color: $main-color;
     color: #fff;
     padding: 20px 0;
   }

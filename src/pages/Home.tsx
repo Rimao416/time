@@ -51,15 +51,104 @@ function Home() {
     }
     return title;
   };
+  interface DropItem {
+    label: string;
+    link: string;
+  }
+  interface SubItem {
+    label: string;
+    link: string;
+    dropItems?: DropItem[]; // Make dropItems optional
+  }
 
-  const menuItems = [
-    { label: "Accueil", link: "#" },
-    { label: "Présentation", link: "#" },
-    { label: "Formations", link: "#" },
-    { label: "Événement", link: "#" },
-    { label: "Contact", link: "#" },
-    // { label: "Vie estudiante", link: "#" },
+  interface MenuItem {
+    label: string;
+    link: string;
+    type?: string; // Optional, based on your structure
+    subItems?: SubItem[]; // Make subItems optional
+  }
+  // Update your menuItems variable with the correct type
+  const menuItems: MenuItem[] = [
+    { label: "Accueil", link: "#", type: "simple" },
+    // {
+    //   label: "Autres Options",
+    //   link: "#",
+    //   type: "normal",
+    //   subItems: [
+    //     { label: "Drop menu 1", link: "#" },
+    //     { label: "Drop menu 2", link: "#" },
+    //     { label: "Drop menu 3", link: "#" },
+    //     { label: "Drop menu 4", link: "#" },
+    //   ],
+    // },
+    { label: "Présentation", link: "#", type: "normal" },
+    {
+      label: "Formations",
+      link: "#",
+      type: "big",
+      subItems: [
+        {
+          label: "Licences LMD",
+          link: "#",
+          dropItems: [
+            { label: "Informatique (Business Computing)", link: "#" },
+            { label: "Finance", link: "#" },
+            { label: "Marketing", link: "#" },
+            { label: "Management", link: "#" },
+            { label: "Comptabilité", link: "#" },
+            { label: "Gestion des Ressources Humaines", link: "#" },
+          ],
+        },
+        {
+          label: "Cycle preparatoire integré",
+          link: "#",
+          dropItems: [
+            { label: "1ière Année : Math-Physique: Informatique", link: "#" },
+            { label: "2ième Année", link: "#" },
+          ],
+        },
+        {
+          label: "Mastères professionels",
+          link: "#",
+          dropItems: [
+            { label: "Comptabilité", link: "#" },
+            { label: "Finance", link: "#" },
+            { label: "Ingénirie Financière (IF)", link: "#" },
+            { label: "Ingénierie de Logiciel", link: "#" },
+            {
+              label:
+                "Fiscalité des systèmes inforamtiques et des réseauxx (SSIR)",
+              link: "#",
+            },
+            {
+              label:
+                "Management des ressources humaines et ingénierie des compétences (MRHIC)",
+              link: "#",
+            },
+            {
+              label:
+                "Intelligence économique et stratégies compétitives à l'international (ESCI)",
+              link: "#",
+            },
+            {
+              label: "Contrôle de gestion et systèmes d'information (CGSI)",
+              link: "#",
+            },
+            { label: "Management opérationnel (MO)", link: "#" },
+            {
+              label: "Marketing et force de vente à l'international (MFVI)",
+              link: "#",
+            },
+          ],
+        },
+
+        // ... (rest of your items)
+      ],
+    },
+    { label: "Événement", link: "#", type: "big" },
+    { label: "Contact", link: "#", type: "big" },
   ];
+
   const imageGallery = [
     Temoignage_1,
     Temoignage_2,
@@ -95,10 +184,58 @@ function Home() {
         <img src={Logo} alt={Logo} className="navigation__logo" />
         <ul className="navigation__menu">
           {menuItems.map((item, index) => (
-            <li key={index}>
+            <li key={index} className="navigation__item">
               <a href={item.link} className="navigation__link">
                 {item.label}
               </a>
+              {item.subItems && item.type === "normal" ? (
+              <ul className="navigation__dropdown">
+              {item.subItems.map((subItem, subIndex) => (
+                <li key={subIndex} className="navigation__dropdown--item">
+                  <a href={subItem.link} className="navigation__dropdown-link">
+                    {subItem.label}
+                    {subItem.dropItems && (
+                      <ul className="navigation__dropdown--dropdown">
+                        {subItem.dropItems.map((dropItem, dropIndex) => (
+                          <li
+                            key={dropIndex}
+                            className="navigation__dropdown--dropdown-item"
+                          >
+                            <a
+                              href={dropItem.link}
+                              className="navigation__dropdown--dropdown-link"
+                            >
+                              {dropItem.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+              ) : item.subItems && item.type === "big" ? (
+                <div className="navigation__mega">
+        <div className="navigation__mega--content">
+          {item.subItems && item.subItems.map((subItem, subIndex) => (
+            <div key={subIndex} className="navigation__mega--item">
+              <h3 className="navigation__mega--title">
+                {subItem.label}
+              </h3>
+              <ul>
+                {subItem.dropItems &&
+                  subItem.dropItems.map((dropItem, dropIndex) => (
+                    <li key={dropIndex}>
+                      <a href={dropItem.link} className="navigation__mega--link">{dropItem.label}</a>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+              ): null}
             </li>
           ))}
         </ul>
@@ -189,15 +326,16 @@ function Home() {
           </div>
         </div> */}
         <div className="about__wrapper">
-          <p className="about__wrapper--about">About Us</p>
+          <p className="about__wrapper--about">À Propos de TIME</p>
           <h1 className="about__wrapper--title">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis
+            TIME Higher School vise principalement l'employabilité
           </h1>
           <p className="about__wrapper--lorem">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt,
-            vel quibusdam eligendi saepe sapiente facere inventore voluptatum
-            necessitatibus. Nemo officia, error nihil delectus vel iure
-            voluptatum iste. Dolorum, optio nam!
+            TIME Higher School, a pour principal objectif l’employabilité, qui
+            consiste pour elle à tout mettre en œuvre pour permettre à
+            l’étudiant d’être immédiatement opérationnel au terme de ses études
+            tout en développant en lui la capacité d’évoluer dans les nouveaux
+            métiers qu’il aura à exercer.
           </p>
           <div className="about__wrapper--bottom">
             <button>Voir Plus</button>

@@ -2,56 +2,57 @@ import { HeaderPros } from "../components/Header";
 
 export const headerData: HeaderPros[] = [
   {
-    title: "Lorem Ipsum Dolor Sit Amet",
+    title: "Time Université Lance un Nouveau Programme de Master",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Time Université annonce le lancement d'un nouveau programme de Master en Intelligence Artificielle et Big Data, destiné aux étudiants souhaitant se spécialiser dans ces domaines en pleine croissance.",
   },
   {
-    title: "Lorem Ipsum Consectetur Adipiscing Elit",
+    title: "Cérémonie de Remise des Diplômes 2024",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.",
+      "La cérémonie de remise des diplômes de Time Université se tiendra le 15 juin 2024 au campus principal. Les familles et amis sont invités à célébrer les réussites des étudiants.",
   },
   {
-    title: "Lorem Ipsum Sed Do Eiusmod Tempor",
+    title: "Conférence Internationale sur la Technologie Éducative",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse.",
+      "Time Université accueillera la Conférence Internationale sur la Technologie Éducative en novembre prochain, réunissant des experts du monde entier pour discuter de l'avenir de l'éducation.",
   },
   {
-    title: "Lorem Ipsum Ut Enim Ad Minim Veniam",
+    title: "Ouverture de la Nouvelle Bibliothèque Digitale",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident, sunt in culpa.",
+      "La nouvelle bibliothèque digitale de Time Université est maintenant accessible. Elle offre aux étudiants un accès illimité à des ressources académiques et scientifiques en ligne.",
   },
   {
-    title: "Lorem Ipsum Quis Nostrum Exercitationem",
+    title: "Partenariat avec des Universités Internationales",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem.",
+      "Time Université a signé un partenariat avec plusieurs universités internationales pour offrir aux étudiants des opportunités d'échanges académiques et des doubles diplômes.",
   },
   {
-    title: "Lorem Ipsum Proident, Sunt In Culpa",
+    title: "Séminaire sur l'Entrepreneuriat et l'Innovation",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit.",
+      "Un séminaire sur l'entrepreneuriat et l'innovation aura lieu en octobre. Il est ouvert aux étudiants, enseignants, et entrepreneurs en herbe pour encourager la création de startups.",
   },
   {
-    title: "Lorem Ipsum Vivamus At Nulla",
+    title: "Journée Portes Ouvertes 2024",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque volutpat consequat arcu, sit amet dictum nisi.",
+      "La Journée Portes Ouvertes de Time Université se déroulera le 1er avril 2024. C’est l’occasion pour les futurs étudiants de découvrir les campus et les programmes proposés.",
   },
   {
-    title: "Lorem Ipsum Morbi Tempus Felis",
+    title: "Concours de Développement Durable",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non lectus nec nisi pretium auctor ut ut eros.",
+      "Time Université organise un concours sur le développement durable. Les étudiants sont invités à soumettre leurs projets innovants pour réduire l'empreinte carbone du campus.",
   },
   {
-    title: "Lorem Ipsum Curabitur Convallis",
+    title: "Programme de Mentorat pour les Nouveaux Étudiants",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula diam a orci sollicitudin, a tincidunt dui.",
+      "Un nouveau programme de mentorat a été lancé pour soutenir les étudiants de première année. Les anciens élèves et les professeurs joueront un rôle clé dans ce programme.",
   },
   {
-    title: "Lorem Ipsum Phasellus In Gravid",
+    title: "Bourses d'Études pour les Étudiants Internationaux",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus convallis erat nec quam convallis, ut gravida lacus faucibus.",
+      "Time Université annonce de nouvelles bourses d'études pour les étudiants internationaux, encourageant ainsi une diversité culturelle sur ses campus.",
   },
 ];
+
 interface calendarPros {
   title: string;
   description: string;
@@ -63,32 +64,33 @@ export const calendarData: calendarPros[] = [
   {
     title: "Pré-inscription Licence",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Les étudiants souhaitant s'inscrire au programme de Licence pour l'année académique 2024 peuvent déposer leur dossier de pré-inscription en ligne avant la date limite.",
     day: "15",
     month: "JAN",
   },
   {
     title: "Pré-inscription Mastère",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.",
+      "Les futurs candidats au Mastère sont invités à compléter leur pré-inscription en fournissant leurs relevés de notes et lettres de motivation avant la date du 19 janvier.",
     day: "19",
     month: "JAN",
   },
   {
     title: "Pré-inscription Cycle Préparatoire",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse.",
+      "Les élèves intéressés par le Cycle Préparatoire sont appelés à soumettre leur demande de pré-inscription avant le 21 janvier pour commencer leurs études en septembre.",
     day: "21",
     month: "JAN",
   },
   {
     title: "Pré-Inscription Cycle Ingénieur",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident, sunt in culpa.",
+      "Les étudiants en fin de cycle préparatoire ou titulaires d'un diplôme équivalent peuvent postuler au Cycle Ingénieur via la procédure de pré-inscription ouverte jusqu'au 22 janvier.",
     day: "22",
     month: "JAN",
   },
 ];
+
 
 
 interface TitleProps{
