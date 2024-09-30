@@ -2,6 +2,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { useState, useEffect } from "react";
 import Logo from "../assets/logo.jpg";
+import { MdArrowDropDown } from "react-icons/md";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -188,6 +189,10 @@ function Home() {
               <a href={item.link} className="navigation__link">
                 {item.label}
               </a>
+              {item.subItems && (
+                
+              <span style={{cursor:"pointer"}}><MdArrowDropDown/></span>
+              )}
               {item.subItems && item.type === "normal" ? (
               <ul className="navigation__dropdown">
               {item.subItems.map((subItem, subIndex) => (
